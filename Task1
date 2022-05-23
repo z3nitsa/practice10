@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <list>
+using namespace std;
+
+class Student{
+public:
+    string name;
+    string surname;
+    string age;
+
+    Student(string n, string s, string m){
+        name = n;
+        surname = s;
+        age = m;
+
+    };
+};
+class Teacher: public Student{
+public:
+    list<Student*> group;
+    short rank;
+    Teacher(string n1, string s1, string m1) : Student(n1, s1, m1) {
+        name = n1;
+        surname = s1;
+        age = m1;
+
+    };
+    Teacher& visit_card(){
+        cout << "Surname: " << surname << endl;
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Rank: " << rank << endl;
+    }
+};
+int main(){
+    Teacher Ilya(  "Ilya", "Kolokolnikov","99");
+    Student Kirill( "Kirill", "Svodnev", "19");
+    Student Nastya( "Anastatia", "Bolonkina", "18");
+
+    Ilya.group.push_back(&Kirill);
+    Ilya.group.push_back(&Nastya);
+    Student* adress = &Kirill;
+    Student frt1 = *adress; // frt1 = *&frt
+    return 0;
+}
